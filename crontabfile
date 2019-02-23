@@ -1,0 +1,8 @@
+# 古いFCSファイルを削除
+15 8 * * * find /mnt/storage/print/ -maxdepth 1 -mindepth 1 -type d  -mtime +1 | xargs  rm -rfv >> $LOG_DIR/removeFCS.log
+
+# I2モジュールによるログの削除
+# @optime 10min
+11 8 * * * find $HOME/main/i2/logs/ -type f -size 0 | xargs rm -fv >> $LOG_DIR/removeI2Log.log
+13 8 * * * find $HOME/main/i2/logs/ -type f -mtime +30 | xargs rm -fv >> $LOG_DIR/removeI2Log.log
+@reboot
